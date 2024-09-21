@@ -5,8 +5,8 @@ import { BottomNav } from './BottomNav'
 export const AppContainer = () => {
   return (
     <div className="px-5">
-      <Outlet />
-      <BottomNav />
+        <Outlet />
+        <BottomNav />
     </div>
   )
 }

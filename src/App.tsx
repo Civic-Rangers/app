@@ -4,6 +4,7 @@ import { AppContainer } from './components/AppContainer'
 import { Layout } from './components/Layout'
 import DonorSignup from './pages/DonorForm'
 import { Home } from './pages/Home'
+import { Dashboard } from './pages/Dashboard'
 import SeekerSignup from './pages/SeekerForm'
 import UserLogin from './pages/UserLogin'
 
@@ -14,6 +15,8 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route element={<AppContainer />}>
+          {/* Add some routes here */}
+          <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path="/donor-signup" element={<DonorSignup />} />
             <Route path="/user-login" element={<UserLogin />} />
             {/* <Route path="/donor-dashboard" element={<DonorSignup />} /> */}

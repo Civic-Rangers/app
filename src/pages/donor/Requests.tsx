@@ -11,13 +11,14 @@ const mockRequests = [
 const Requests: React.FC = () => {
   return (
     <>
-      <div className='mt-8'>
-        <h1 className='text-2xl font-bold'>Requests</h1>
-        <p className='my-2 text-gray-500 mb-4'>A list of all reservation requests, including details such as contact information, date, and status.</p>
+      <div className='p-0 pb-20'>
+        <header className="mb-6 flex items-center justify-between bg-gray-800 p-4 rounded-lg shadow-lg">
+          <h1 className="text-1xl font-bold text-white">Requests</h1>
+        </header>
 
         <table className='table-auto w-full mt-4 rounded-lg shadow-xl overflow-hidden'>
-          <thead>
-            <tr className="bg-gray-100 h-12">
+        <thead className='text-white'>
+            <tr className="bg-gray-800 h-12">
                 <th className='p-2 text-left'>Name</th>
                 <th className='p-2 text-left'>Contact</th>
                 <th className='p-2 text-left'>Date</th>
@@ -25,7 +26,7 @@ const Requests: React.FC = () => {
                 <th className='p-2 text-left'>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className='text-white bg-gray-800'>
             {mockRequests.map(request => (
               <tr key={request.id} className='border-b'>
                 <td className='p-2 md:flex items-center gap-4'>

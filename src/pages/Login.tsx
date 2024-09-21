@@ -9,7 +9,7 @@ import HTTP from '../utils/http'
 const notifySuccess = (message: string) => toast.success(`${message}`)
 const notifyError = (message: string) => toast.error(`${message}`)
 
-export function Login() {
+export default function Login() {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -96,7 +96,6 @@ export function Login() {
               {isLoading ? (
                 <button type="button" className="btn btn-primary" disabled>
                   Loading...
-
                   <svg
                     className="mr-3 h-5 w-5 animate-spin text-white"
                     xmlns="http://www.w3.org/2000/svg"
@@ -127,5 +126,3 @@ export function Login() {
     </>
   )
 }
-
-export default Login

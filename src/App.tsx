@@ -6,8 +6,10 @@ import { Dashboard } from './pages/Dashboard'
 import DonorSignup from './pages/DonorForm'
 import { Home } from './pages/Home'
 import Profile from './pages/Profile'
-import SeekerSignup from './pages/SeekerForm'
 import UserLogin from './pages/UserLogin'
+import DonorRequests from './pages/donor/Requests'
+import SeekerSignup from './pages/SeekerForm'
+import SeekerApplications from './pages/seeker/Applications'
 
 function App() {
   return (
@@ -19,12 +21,12 @@ function App() {
             {/* seeker routes */}
             <Route path="/seeker/dashboard" element={<Dashboard />} />
             <Route path="/seeker/signup" element={<SeekerSignup />} />
-            <Route path="/seeker/applications" element={<Dashboard />} />
+            <Route path="/seeker/applications" element={<SeekerApplications />} />
 
             {/* donor routes */}
             <Route path="/donor/signup" element={<DonorSignup />} />
             <Route path="/donor/spots" element={<Dashboard />} />
-            <Route path="/donor/requests" element={<Dashboard />} />
+            <Route path="/donor/requests" element={<DonorRequests />} />
 
             {/* share routes */}
             <Route path="/login" element={<UserLogin />} />

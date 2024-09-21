@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route element={<AppContainer />}>
           {/* Add some routes here */}
-          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/donor-dashboard' element={<Dashboard/>}/>
             <Route path="/donor-signup" element={<DonorSignup />} />
             <Route path="/user-login" element={<UserLogin />} />
             {/* <Route path="/donor-dashboard" element={<DonorSignup />} /> */}

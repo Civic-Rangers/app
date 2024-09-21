@@ -17,6 +17,8 @@ export function SeekerSignup() {
     photo_id: '',
   });
 
+  const [showToast, setShowToast] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -28,7 +30,7 @@ export function SeekerSignup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,6 +40,8 @@ export function SeekerSignup() {
       const data = await response.json();
       if (response.ok) {
         console.log('User created successfully:', data);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000); 
       } else {
         console.error('Error creating user:', data);
       }
@@ -48,6 +52,15 @@ export function SeekerSignup() {
 
   return (
     <div className="container mx-auto p-4 pb-20"> {/* Add padding-bottom to avoid overlap */}
+      {showToast && (
+        <div className="toast toast-top toast-end">
+          <div className="alert alert-success">
+            <div>
+              <span>User created successfully!</span>
+            </div>
+          </div>
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="form-control">
           <label className="label">

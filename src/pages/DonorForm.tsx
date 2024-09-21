@@ -46,7 +46,7 @@ export function DonorSignup() {
         setToast({ message: `Error: ${data.message}`, type: 'error' });
       }
     } catch (error) {
-      setToast({ message: `Error: ${error.message}`, type: 'error' });
+      setToast({ message: `Error something happened`, type: 'error' });
     }
   };
 

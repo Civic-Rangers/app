@@ -13,10 +13,16 @@ import {
 } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
+import { getUser } from '../utils/store'
+
 export const BottomNav = () => {
   const userRole = useRef('donor')
-
   const navigate = useNavigate()
+
+  if (getUser()) {
+    userRole.current = getUser().role
+  }
+
   return (
     <div className="btm-nav">
       {userRole.current === 'donor' ? (

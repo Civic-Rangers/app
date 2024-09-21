@@ -1,6 +1,17 @@
+import { useNavigate } from 'react-router-dom'
+
 export const Avatar = () => {
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+
+    navigate('/login')
+  }
+
   return (
-    <div className="flex-none">
+    <div className="mr-3 flex-none">
       <div className="dropdown dropdown-end">
         <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
           <div className="w-10 rounded-full">
@@ -21,7 +32,7 @@ export const Avatar = () => {
             <a>Settings</a>
           </li>
           <li>
-            <a>Logout</a>
+            <a onClick={() => logout()}>Logout</a>
           </li>
         </ul>
       </div>

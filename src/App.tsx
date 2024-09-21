@@ -5,10 +5,10 @@ import { Layout } from './components/Layout'
 import { Dashboard } from './pages/Dashboard'
 import DonorSignup from './pages/DonorForm'
 import { Home } from './pages/Home'
+import Login from './pages/Login'
 import Profile from './pages/Profile'
-import UserLogin from './pages/UserLogin'
-import DonorRequests from './pages/donor/Requests'
 import SeekerSignup from './pages/SeekerForm'
+import DonorRequests from './pages/donor/Requests'
 import SeekerApplications from './pages/seeker/Applications'
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
             <Route path="/donor/requests" element={<DonorRequests />} />
 
             {/* share routes */}
-            <Route path="/login" element={<UserLogin />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Route>

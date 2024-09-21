@@ -158,7 +158,7 @@ const Profile: React.FC = () => {
               className="mt-1 w-full rounded-md bg-gray-700 p-2 text-white focus:border-blue-500 focus:ring-blue-500"
               id="role"
               name="role"
-              defaultValue="seeker">
+              defaultValue="seekers">
               <option value="seekers">Seeker</option>
               <option value="donor">Donor</option>
             </select>

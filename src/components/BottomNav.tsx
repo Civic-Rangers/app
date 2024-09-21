@@ -1,24 +1,13 @@
 import { useRef, useEffect, useState } from 'react'
 
-import {
-  FaEnvelope,
-  FaPhoneAlt,
-  FaEllipsisV,
-  FaMapMarkerAlt,
-  FaClipboardList,
-  FaUser,
-  FaAppStore,
-  FaMap,
-  FaHome,
-} from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { FaMapMarkerAlt, FaClipboardList, FaUser, FaMap, FaHome } from 'react-icons/fa'
+import { NavLink } from 'react-router-dom'
 
 import { getUser } from '../utils/store'
 import { useGlobal } from '../utils/global.store'
 
 export const BottomNav = () => {
   const userRole = useRef('donor')
-  const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { user } = useGlobal()
 
@@ -36,37 +25,37 @@ export const BottomNav = () => {
         <div className="btm-nav">
           {userRole.current === 'donor' ? (
             <>
-              <button onClick={() => navigate('/donor/requests')}>
+              <NavLink to="/donor/requests">
                 <FaClipboardList className="h-5 w-5" />
                 <span className="btm-nav-label">Requests</span>
-              </button>
+              </NavLink>
 
-              <button onClick={() => navigate('/donor/spots')}>
+              <NavLink to="/donor/spots">
                 <FaMapMarkerAlt className="h-5 w-5" />
                 <span className="btm-nav-label">Spots</span>
-              </button>
+              </NavLink>
 
-              <button onClick={() => navigate('/profile')}>
+              <NavLink to="/profile">
                 <FaUser className="h-5 w-5" />
                 <span className="btm-nav-label">Profile</span>
-              </button>
+              </NavLink>
             </>
           ) : (
             <>
-              <button onClick={() => navigate('/seeker/applications')}>
+              <NavLink to="/seeker/applications">
                 <FaHome className="h-5 w-5" />
                 <span className="btm-nav-label">Applications</span>
-              </button>
+              </NavLink>
 
-              <button onClick={() => navigate('/seeker/dashboard')}>
+              <NavLink to="/seeker/dashboard">
                 <FaMap className="h-5 w-5" />
                 <span className="btm-nav-label">Dashboard</span>
-              </button>
+              </NavLink>
 
-              <button onClick={() => navigate('/profile')}>
+              <NavLink to="/profile">
                 <FaUser className="h-5 w-5" />
                 <span className="btm-nav-label">Profile</span>
-              </button>
+              </NavLink>
             </>
           )}
         </div>

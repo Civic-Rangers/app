@@ -1,46 +1,23 @@
-import { Profile } from "../../components/Profile";
-import thumbnailImage from "../../assets/car.png";
-
-const user = {
-    name: "Amanda Smith",
-    description: "Making parking accessible.",
-    phone: "561-123-4567",
-    email: "example@email.com",
-    availableSpaces: [
-        {
-            address_street: "123 Main St",
-            address_city: "Fort Lauderdale",
-            address_state: "FL",
-            address_zip: "33301",
-            distance: "5.2 miles",
-            available: "available",
-            imageSrc: thumbnailImage
-        },
-        {
-            address_street: "6701 Hiatus Rd",
-            address_city: "Tamarac",
-            address_state: "FL",
-            address_zip: "33321",
-            distance: "18.45 miles",
-            available: "not available",
-            imageSrc: thumbnailImage
-        }
-    ]
-};
-
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 
 export default function Dashboard() {
-    return (
-        <>
-            <Profile 
-                role="donor"
-                name={user.name}
-                description={user.description}
-                phone={user.phone}
-                email={user.email}
-                availableSpaces={user.availableSpaces}
-                isLoggedInUser={true}
-            />
-        </>
-    );
+  const geoUrl = 'https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json'
+
+  return (
+    <>
+      <div className="p-0 pb-20">
+        <header className="mb-6 flex items-center justify-between rounded-lg bg-gray-800 p-4 shadow-lg">
+          <h1 className="text-1xl font-bold text-white">Profile</h1>
+        </header>
+
+        <div>
+          <ComposableMap>
+            <Geographies geography={geoUrl}>
+              {({ geographies }) => geographies.map(geo => <Geography key={geo.rsmKey} geography={geo} />)}
+            </Geographies>
+          </ComposableMap>
+        </div>
+      </div>
+    </>
+  )
 }

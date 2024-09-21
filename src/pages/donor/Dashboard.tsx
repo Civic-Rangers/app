@@ -1,5 +1,5 @@
-import { Profile } from "../components/Profile";
-import thumbnailImage from "../assets/car.png";
+import { Profile } from "../../components/Profile";
+import thumbnailImage from "../../assets/car.png";
 
 const user = {
     name: "Amanda Smith",
@@ -29,7 +29,7 @@ const user = {
 };
 
 
-export function Dashboard() {
+export default function Dashboard() {
     return (
         <>
             <Profile 

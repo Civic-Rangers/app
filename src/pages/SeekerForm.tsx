@@ -17,7 +17,7 @@ export function SeekerSignup() {
     photo_id: '',
   });
 
-  const [showToast, setShowToast] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: '', type: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -27,36 +27,50 @@ export function SeekerSignup() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://api-0zuj.onrender.com';
+  
+    console.log('Form data:', formData);
+    console.log('API URL:', apiUrl);
+  
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch(`${apiUrl}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
+  
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+  
       const data = await response.json();
+      console.log('Response data:', data);
+  
       if (response.ok) {
         console.log('User created successfully:', data);
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000); 
+        setToast({ show: true, message: 'User created successfully!', type: 'success' });
       } else {
         console.error('Error creating user:', data);
+        setToast({ show: true, message: `Error: ${data.message}`, type: 'error' });
       }
     } catch (error) {
       console.error('Error:', error);
+      setToast({ show: true, message: `Error: ${error.message}`, type: 'error' });
+    } finally {
+      setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000); // Hide toast after 3 seconds
     }
   };
 
   return (
-    <div className="container mx-auto p-4 pb-20"> {/* Add padding-bottom to avoid overlap */}
-      {showToast && (
-        <div className="toast toast-top toast-end">
-          <div className="alert alert-success">
+    <div className="container mx-auto p-4 pb-20">
+      {toast.show && (
+        <div className={`toast toast-top toast-end ${toast.type === 'success' ? 'alert-success' : 'alert-error'}`}>
+          <div className="alert">
             <div>
-              <span>User created successfully!</span>
+              <span>{toast.message}</span>
             </div>
           </div>
         </div>

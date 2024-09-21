@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom'
+import { useGlobal } from '../utils/global.store'
 
 export const Avatar = ({ setIsLoggedIn }: { setIsLoggedIn: (value: boolean) => void }) => {
   const navigate = useNavigate()
+  const { resetStore } = useGlobal()
 
   const logout = () => {
+    resetStore()
     localStorage.removeItem('user')
     localStorage.removeItem('token')
     setIsLoggedIn(false)

@@ -11,7 +11,10 @@ const mockRequests = [
 const Requests: React.FC = () => {
   return (
     <>
-      <h1 className="mb-4 text-2xl font-bold">Requests</h1>
+      <header className="mb-6 flex items-center justify-between rounded-lg bg-gray-800 p-4 shadow-lg">
+        <h1 className="text-1xl font-bold text-white">Requests</h1>
+      </header>
+
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-700 bg-gray-800">
           <thead>

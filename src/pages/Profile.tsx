@@ -3,6 +3,10 @@ import React from 'react'
 const Profile: React.FC = () => {
   return (
     <div className="p-0 pb-20">
+      <header className="mb-6 flex items-center justify-between bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h1 className="text-1xl font-bold text-white">Profile</h1>
+      </header>
+
       <div className="rounded-lg bg-gray-800 p-6 shadow-lg">
         <div className="flex flex-col items-center">
           <img className="h-24 w-24 rounded-full shadow-lg" src="https://via.placeholder.com/150" alt="Profile" />

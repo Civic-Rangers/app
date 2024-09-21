@@ -24,7 +24,7 @@ export const BottomNav = () => {
     <>
       {user._id != '' && (
         <div className="btm-nav">
-          {userRole.current === 'donor' ? (
+          {user.role === 'donor' ? (
             <>
               <NavLink to="/donor/requests">
                 <FaClipboardList className="h-5 w-5" />

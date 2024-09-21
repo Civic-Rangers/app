@@ -1,20 +1,23 @@
-import { useState } from 'react'
-
 export function Home() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1 className="text-red-600">Vite + React</h1>
-      <div className="card">
-        <button className="btn btn-warning" onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+    <div
+      className="hero min-h-screen"
+      style={{
+        backgroundImage: 'url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)',
+      }}>
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h1 className="mb-5 text-5xl font-bold">Need a spot? Spot Me.</h1>
+          <p className="mb-5">
+          Find a safe spot or offer yours to others during floods. Stay protected and help your community with Spot Me!
+          </p>
+          <div className="flex justify-center gap-2">
+            <button className="btn btn-primary">I need a spot</button>
+            <button className="btn btn-secondary">I have a spot</button>
+          </div>
+        </div>
       </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    </div>
   )
 }

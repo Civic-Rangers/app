@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import {
   FaEnvelope,
@@ -12,6 +11,7 @@ import {
   FaMap,
   FaHome,
 } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 export const BottomNav = () => {
   const userRole = useRef('donor')
@@ -22,7 +22,7 @@ export const BottomNav = () => {
       {userRole.current === 'donor' ? (
         <>
           <button onClick={() => navigate('/donor/requests')}>
-          <FaClipboardList className="h-5 w-5" />
+            <FaClipboardList className="h-5 w-5" />
             <span className="btm-nav-label">Requests</span>
           </button>
 
@@ -39,7 +39,7 @@ export const BottomNav = () => {
       ) : (
         <>
           <button onClick={() => navigate('/seeker/applications')}>
-          <FaHome className="h-5 w-5" />
+            <FaHome className="h-5 w-5" />
             <span className="btm-nav-label">Applications</span>
           </button>
 

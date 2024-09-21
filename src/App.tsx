@@ -33,14 +33,7 @@ function App() {
             {/* share routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-<<<<<<< HEAD
-
-            {/* Other routes */}
-            <Route path="/flood-alert" element={<FloodAlert />} />
-
-=======
             
->>>>>>> e13950f4bb0ed641e9daf1220e137b13405f364a
           </Route>
         </Route>
       </Routes>

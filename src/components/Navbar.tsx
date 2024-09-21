@@ -1,13 +1,21 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 import { FaRoute, FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
+import { getUser } from '../utils/store'
 import { Avatar } from './Avatar'
 
 export const Navbar = () => {
-  const [isLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (getUser()) {
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   return (
     <div className="navbar bg-base-100">

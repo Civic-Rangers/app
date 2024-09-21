@@ -6,9 +6,11 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { getUser } from '../utils/store'
 import { Avatar } from './Avatar'
+import { useGlobal } from '../utils/global.store'
 
 export const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { user } = useGlobal()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,8 +27,7 @@ export const Navbar = () => {
           <FaRoute className="mr-2" />
         </Link>
       </div>
-
-      {isLoggedIn ? (
+      {user._id != '' ? (
         <Avatar setIsLoggedIn={setIsLoggedIn} />
       ) : (
         <a className="btn btn-accent btn-sm mr-3" onClick={() => navigate('/login')}>

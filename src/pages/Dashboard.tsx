@@ -1,12 +1,11 @@
-import { Card } from "../components/Card";
-import { Modal } from "../components/Modal";
 import { Profile } from "../components/Profile";
+import thumbnailImage from "../assets/car.png";
 
 const user = {
     name: "Amanda Smith",
     description: "Making parking accessible.",
     phone: "561-123-4567",
-    email: "donor@example.com",
+    email: "example@email.com",
     availableSpaces: [
         {
             address_street: "123 Main St",
@@ -15,7 +14,7 @@ const user = {
             address_zip: "33301",
             distance: "5.2 miles",
             available: "available",
-            imageSrc: "https://lh3.googleusercontent.com/gg/ACM6BIt6G-a4VJfODcB6nyhZ92GJ0oGUxAnzWCoGr4S7uLuOk0K_o4Qsrtrb7fDc75D1KbsddNVnaPIUq-CLLpNF9oa6fx2ryWT4wG8P8U524QT3bCuT8PgggHy6-Uv48J-iIWcvsWMwopfg0eyhV0iFIrP-h-BVBRFIAsHX80hScNBU0qfGxK65BNkaMu6tU4jUUfOJL8LYThAGVRVs1h4QKHSLK3fnPg2KgQ5WV8NYvKJz7ayFE8IcXqGn8VPysxSk1GZEFRz7fiS5QMNbSeJmu4jv1En2ik-IHADHL-U1hY1CVui2cpa6RQh_6wrBjQAd1F83XHsVOskjBAbyjdAG2yiZ"
+            imageSrc: thumbnailImage
         },
         {
             address_street: "6701 Hiatus Rd",
@@ -24,7 +23,7 @@ const user = {
             address_zip: "33321",
             distance: "18.45 miles",
             available: "not available",
-            imageSrc: "https://lh3.googleusercontent.com/gg/ACM6BIt6G-a4VJfODcB6nyhZ92GJ0oGUxAnzWCoGr4S7uLuOk0K_o4Qsrtrb7fDc75D1KbsddNVnaPIUq-CLLpNF9oa6fx2ryWT4wG8P8U524QT3bCuT8PgggHy6-Uv48J-iIWcvsWMwopfg0eyhV0iFIrP-h-BVBRFIAsHX80hScNBU0qfGxK65BNkaMu6tU4jUUfOJL8LYThAGVRVs1h4QKHSLK3fnPg2KgQ5WV8NYvKJz7ayFE8IcXqGn8VPysxSk1GZEFRz7fiS5QMNbSeJmu4jv1En2ik-IHADHL-U1hY1CVui2cpa6RQh_6wrBjQAd1F83XHsVOskjBAbyjdAG2yiZ"
+            imageSrc: thumbnailImage
         }
     ]
 };

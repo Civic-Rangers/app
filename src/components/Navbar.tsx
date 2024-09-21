@@ -1,27 +1,38 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
 
-import { FaRoute } from 'react-icons/fa'
+import { FaRoute, FaSignInAlt } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
 
+import { getUser } from '../utils/store'
 import { Avatar } from './Avatar'
 
 export const Navbar = () => {
-  const [isLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (getUser()) {
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">
+        <Link to="/" className="btn btn-ghost text-xl">
           Spot Me
           <FaRoute className="mr-2" />
-        </a>
+        </Link>
       </div>
 
       {isLoggedIn ? (
-        <Avatar />
+        <Avatar setIsLoggedIn={setIsLoggedIn} />
       ) : (
-        <div className="navbar-end">
-          <a className="btn btn-accent btn-sm">Log In</a>
-        </div>
+        <a className="btn btn-accent btn-sm mr-3" onClick={() => navigate('/login')}>
+          Log In
+          <FaSignInAlt className="ml-2" />
+        </a>
       )}
     </div>
   )

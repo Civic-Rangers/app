@@ -15,7 +15,7 @@ type CardProps = {
 export function Card({ address_street, address_city, address_state, address_zip, distance, available, imageSrc, onClick }: CardProps) {
     return (
         <>
-        <div className="card w-96 shadow-xl bg-white text-black m-2 cursor-pointer" onClick={onClick}>
+<div className="card w-96 mx-auto shadow-md bg-gray-800 text-white md:m-2 cursor-pointer" onClick={onClick}>
             <div className="p-5 flex justify-between">
                 <div>
                     <h6 className="font-bold" title={address_street}>{address_street}</h6>

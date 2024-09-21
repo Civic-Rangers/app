@@ -1,59 +1,63 @@
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
-import {
-  FaEnvelope,
-  FaPhoneAlt,
-  FaEllipsisV,
-  FaMapMarkerAlt,
-  FaClipboardList,
-  FaUser,
-  FaAppStore,
-  FaMap,
-  FaHome,
-} from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { FaMapMarkerAlt, FaClipboardList, FaUser, FaMap, FaHome } from 'react-icons/fa'
+import { NavLink } from 'react-router-dom'
+
+import { getUser } from '../utils/store'
 
 export const BottomNav = () => {
   const userRole = useRef('donor')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const navigate = useNavigate()
+  useEffect(() => {
+    if (getUser()) {
+      setIsLoggedIn(true)
+
+      userRole.current = getUser().role
+    }
+  }, [])
+
   return (
-    <div className="btm-nav">
-      {userRole.current === 'donor' ? (
-        <>
-          <button onClick={() => navigate('/donor/requests')}>
-            <FaClipboardList className="h-5 w-5" />
-            <span className="btm-nav-label">Requests</span>
-          </button>
+    <>
+      {isLoggedIn && (
+        <div className="btm-nav">
+          {userRole.current === 'donor' ? (
+            <>
+              <NavLink to="/donor/requests">
+                <FaClipboardList className="h-5 w-5" />
+                <span className="btm-nav-label">Requests</span>
+              </NavLink>
 
-          <button onClick={() => navigate('/donor/spots')}>
-            <FaMapMarkerAlt className="h-5 w-5" />
-            <span className="btm-nav-label">Spots</span>
-          </button>
+              <NavLink to="/donor/spots">
+                <FaMapMarkerAlt className="h-5 w-5" />
+                <span className="btm-nav-label">Spots</span>
+              </NavLink>
 
-          <button onClick={() => navigate('/profile')}>
-            <FaUser className="h-5 w-5" />
-            <span className="btm-nav-label">Profile</span>
-          </button>
-        </>
-      ) : (
-        <>
-          <button onClick={() => navigate('/seeker/applications')}>
-            <FaHome className="h-5 w-5" />
-            <span className="btm-nav-label">Applications</span>
-          </button>
+              <NavLink to="/profile">
+                <FaUser className="h-5 w-5" />
+                <span className="btm-nav-label">Profile</span>
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink to="/seeker/applications">
+                <FaHome className="h-5 w-5" />
+                <span className="btm-nav-label">Applications</span>
+              </NavLink>
 
-          <button onClick={() => navigate('/seeker/dashboard')}>
-            <FaMap className="h-5 w-5" />
-            <span className="btm-nav-label">Dashboard</span>
-          </button>
+              <NavLink to="/seeker/dashboard">
+                <FaMap className="h-5 w-5" />
+                <span className="btm-nav-label">Dashboard</span>
+              </NavLink>
 
-          <button onClick={() => navigate('/profile')}>
-            <FaUser className="h-5 w-5" />
-            <span className="btm-nav-label">Profile</span>
-          </button>
-        </>
+              <NavLink to="/profile">
+                <FaUser className="h-5 w-5" />
+                <span className="btm-nav-label">Profile</span>
+              </NavLink>
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </>
   )
 }

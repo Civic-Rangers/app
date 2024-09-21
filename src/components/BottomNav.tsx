@@ -15,11 +15,11 @@ import { useNavigate } from 'react-router-dom'
 
 export const BottomNav = () => {
   const userRole = useRef('donor')
-
   const navigate = useNavigate()
+
   return (
     <div className="btm-nav">
-      {userRole.current === 'donor' ? (
+      {userRole.current !== 'donor' ? (
         <>
           <button onClick={() => navigate('/donor/requests')}>
             <FaClipboardList className="h-5 w-5" />

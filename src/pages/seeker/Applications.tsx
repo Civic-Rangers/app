@@ -10,8 +10,11 @@ const applications = [
 
 const Applications: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-900 p-8 text-white">
-      <h1 className="mb-6 text-3xl font-bold">Pending Parking Applications</h1>
+    <div className="p-0 pb-20">
+      <header className="mb-6 flex items-center justify-between bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h1 className="text-1xl font-bold text-white">Applications</h1>
+      </header>
+      
       <div className="space-y-4">
         {applications.map(application => (
           <div key={application.id} className="rounded-lg bg-gray-800 p-4 shadow-md">

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const Hero = () => {
@@ -11,6 +10,10 @@ export const Hero = () => {
   const handleHaveSpotClick = () => {
     navigate('/donor/signup');
   };
+
+  const handleReportFloodClick = () => {
+    navigate('/flood-alert');
+  }
 
   return (
     <div
@@ -33,6 +36,14 @@ export const Hero = () => {
             <button className="btn btn-secondary" onClick={handleHaveSpotClick}>
               I have a spot
             </button>
+          </div>
+          <div className="flex justify-center gap-2 mt-1">          
+            <button className="btn btn-active btn-accent" onClick={handleReportFloodClick}>
+              Report Flood Zone
+            </button>
+          </div>
+          <div className="flex justify-center gap-2">       
+          
           </div>
         </div>
       </div>

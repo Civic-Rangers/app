@@ -10,6 +10,7 @@ import UserLogin from './pages/UserLogin'
 import DonorRequests from './pages/donor/Requests'
 import SeekerSignup from './pages/SeekerForm'
 import SeekerApplications from './pages/seeker/Applications'
+import FloodAlert from './pages/FloodAlertForm'
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
             {/* share routes */}
             <Route path="/login" element={<UserLogin />} />
             <Route path="/profile" element={<Profile />} />
+
+            {/* Other routes */}
+            <Route path="/flood-alert" element={<FloodAlert />} />
+
           </Route>
         </Route>
       </Routes>

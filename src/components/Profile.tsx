@@ -30,13 +30,13 @@ type Request = {
 export function Profile({ role, name, description, phone, email, availableSpaces, isLoggedInUser }: ProfileProps) {
     // Example requests data with profile image and location
     const requests: Request[] = [
-        { name: "John Doe", phone: "555-123-4567", vehicle: "Toyota Camry 2020", profileImg: "https://via.placeholder.com/50", location: "Miami, FL" },
-        { name: "Jane Smith", phone: "555-987-6543", vehicle: "Honda Civic 2018", profileImg: "https://via.placeholder.com/50", location: "Fort Lauderdale, FL" },
-        { name: "Michael Johnson", phone: "555-654-3210", vehicle: "Tesla Model 3 2021", profileImg: "https://via.placeholder.com/50", location: "Orlando, FL" }
+        { name: "John Doe", phone: "555-123-4567", vehicle: "Toyota Camry 2020", profileImg: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp", location: "Miami, FL" },
+        { name: "Jane Smith", phone: "555-987-6543", vehicle: "Honda Civic 2018", profileImg: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp", location: "Fort Lauderdale, FL" },
+        { name: "Michael Johnson", phone: "555-654-3210", vehicle: "Tesla Model 3 2021", profileImg: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp", location: "Orlando, FL" }
     ];
 
     return (
-        <div className="p-4">
+        <div className="p-4 pb-20">
             {role === "donor" ? (
                 <>
                     <div className="relative mb-16">
@@ -48,7 +48,7 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                         <FaEllipsisV />
                                     </label>
                                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li><button>View Profile</button></li>
+                                        <li><button>Message User</button></li>
                                         <li><button className="text-red-500">Report User</button></li>
                                     </ul>
                                 </div>
@@ -98,7 +98,7 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                         distance={space.distance}
                                         available={space.available}
                                         imageSrc={space.imageSrc}
-                                        onClick={() => console.log(`Clicked on ${space.address_street}`)} // Example onClick functionality
+                                        onClick={() => document.getElementById('my_modal_1').showModal()} // Example onClick functionality
                                     />
                                 ))
                             ) : (
@@ -123,8 +123,8 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                 <tbody>
                                     {requests.map((request, index) => (
                                         <tr key={index} className="border-b">
-                                            <td className="p-2 flex items-center gap-2">
-                                                <img src={request.profileImg} alt={request.name} className="w-10 h-10 rounded-full" />
+                                            <td className="p-2 flex items-center gap-4">
+                                                <img src={request.profileImg} alt={request.name} className="w-12 h-12 rounded-full hidden md:block" />
                                                 <div>
                                                     <p>{request.name}</p>
                                                     <p className="text-sm text-gray-500">{request.location}</p>
@@ -133,7 +133,7 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                             <td className="p-2">{request.phone}</td>
                                             <td className="p-2">{request.vehicle}</td>
                                             <td className="p-2">
-                                                <button className="btn btn-sm btn-outline">Review</button>
+                                                <button className="btn btn-sm" onClick={() => document.getElementById('my_modal_1').showModal()}>Review</button>
                                             </td>
                                         </tr>
                                     ))}

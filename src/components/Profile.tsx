@@ -1,4 +1,4 @@
-import { FaEnvelope, FaPhoneAlt, FaEllipsisV } from "react-icons/fa";
+import { FaEnvelope, FaPhoneAlt, FaEllipsisH } from "react-icons/fa";
 import { Card } from "./Card"; // Adjust the import path as necessary
 
 type ProfileProps = {
@@ -28,12 +28,6 @@ type Request = {
 }
 
 export function Profile({ role, name, description, phone, email, availableSpaces, isLoggedInUser }: ProfileProps) {
-    // Example requests data with profile image and location
-    const requests: Request[] = [
-        { name: "John Doe", phone: "555-123-4567", vehicle: "Toyota Camry 2020", profileImg: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp", location: "Miami, FL" },
-        { name: "Jane Smith", phone: "555-987-6543", vehicle: "Honda Civic 2018", profileImg: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp", location: "Fort Lauderdale, FL" },
-        { name: "Michael Johnson", phone: "555-654-3210", vehicle: "Tesla Model 3 2021", profileImg: "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp", location: "Orlando, FL" }
-    ];
 
     return (
         <div className="p-4 pb-20">
@@ -41,11 +35,11 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                 <>
                     <div className="relative mb-16">
                         {/* Profile background and dropdown */}
-                        <div className="bg-cover h-48 rounded-lg shadow" style={{ backgroundImage: `url('https://via.placeholder.com/600x200')` }}>
+                        <div className="bg-cover bg-gray-100 h-48 rounded-lg">
                             <div className="absolute top-2 right-2">
                                 <div className="dropdown dropdown-end">
                                     <label tabIndex={0} className="btn btn-sm btn-ghost">
-                                        <FaEllipsisV />
+                                        <FaEllipsisH/>
                                     </label>
                                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                                         <li><button>Message User</button></li>
@@ -70,15 +64,15 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                     {/* User Info */}
                     <div>
                         <h2 className="text-lg font-bold">{name}</h2>
-                        <p className="text-gray-700">{description}</p>
+                        <p className="text-gray-400">{description}</p>
                         <div className="flex gap-4 mt-2">
                             <div className="flex items-center gap-2">
-                                <FaPhoneAlt size={16} />
-                                <p>{phone}</p>
+                                <FaPhoneAlt size={14} />
+                                <p className="text-sm">{phone}</p>
                             </div>
                             <div className="flex items-center gap-2">
-                                <FaEnvelope size={16} />
-                                <p>{email}</p>
+                                <FaEnvelope size={14} />
+                                <p className="text-sm">{email}</p>
                             </div>
                         </div>
                     </div>
@@ -108,12 +102,12 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                     </div>
 
                     {/* Conditional Requests Section */}
-                    {isLoggedInUser && (
+                    {/* {isLoggedInUser && (
                         <div className="mt-8">
                             <h3 className="text-lg font-semibold">Requests</h3>
                             <table className="table-auto w-full mt-4 rounded-lg shadow-xl overflow-hidden">
                                 <thead>
-                                    <tr className="bg-gray-100">
+                                    <tr className="bg-gray-100 h-12">
                                         <th className="p-2 text-left">Name</th>
                                         <th className="p-2 text-left">Phone</th>
                                         <th className="p-2 text-left">Vehicle</th>
@@ -134,14 +128,13 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                             <td className="p-2">{request.vehicle}</td>
                                             <td className="p-2">
                                             <button className="btn btn-sm">Review</button>
-                                                {/* <button className="btn btn-sm" onClick={() => document.getElementById('my_modal_1').showModal()}>Review</button> */}
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
-                    )}
+                    )} */}
                 </>
             ) : (
                 <div>This is a seeker!</div>

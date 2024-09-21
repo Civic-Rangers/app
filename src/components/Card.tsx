@@ -1,27 +1,29 @@
 import { FaCarAlt, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 type CardProps = {
-    name: string;
-    address: string;
-    distance: string | number;
-    availability: boolean;
+    address_street: string;
+    address_city: string;
+    address_state: string;
+    distance: string;
+    available: string;
     imageSrc: string;
+    onClick?: () => void;
 };
 
-export function Card({ name, address, distance, availability, imageSrc }: CardProps) {
+export function Card({ address_street, address_city, address_state, distance, available, imageSrc, onClick }: CardProps) {
     return (
-        <div className="card w-96 shadow-xl bg-white text-black m-2">
+        <div className="card w-96 shadow-xl bg-white text-black m-2" onClick={onClick}>
             <div className="p-5 flex justify-between">
                 <div>
-                    <h6 className="font-bold" title={name}>{name}</h6>
-                    <p className="text-gray-400" title={address}>{address}</p>
+                    <h6 className="font-bold" title={address_street}>{address_street}</h6>
+                    <p className="text-gray-400" title={`${address_city}, ${address_state}`}>{`${address_city}, ${address_state}`}</p>
                     <div className="mt-2 flex gap-4">
                         <div className="flex items-center gap-2">
                             <FaCarAlt size={16} />
-                            <p className="text-sm">{distance} miles</p>
+                            <p className="text-sm">{distance}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            {availability ? (
+                        {available === "available" ? (
                                 <>
                                     <FaCheckCircle className="text-success" />
                                     <p className="text-sm">Available</p>

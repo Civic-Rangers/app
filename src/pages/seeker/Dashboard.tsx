@@ -82,7 +82,7 @@ export default function Dashboard() {
             </span>
           </span>
         </h1>
-      </header>
+      </header> 
 
       <div>
         <LoadScript googleMapsApiKey={apiKey}>

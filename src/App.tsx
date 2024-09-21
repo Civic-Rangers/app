@@ -32,7 +32,7 @@ function App() {
             {/* share routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            
+
           </Route>
         </Route>
       </Routes>

@@ -14,11 +14,13 @@ import {
 import { useNavigate } from 'react-router-dom'
 
 import { getUser } from '../utils/store'
+import { useGlobal } from '../utils/global.store'
 
 export const BottomNav = () => {
   const userRole = useRef('donor')
   const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { user } = useGlobal()
 
   useEffect(() => {
     if (getUser()) {
@@ -30,7 +32,7 @@ export const BottomNav = () => {
 
   return (
     <>
-      {isLoggedIn && (
+      {user._id != '' && (
         <div className="btm-nav">
           {userRole.current === 'donor' ? (
             <>

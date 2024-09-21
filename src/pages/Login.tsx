@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import HTTP from '../utils/http'
+import { useGlobal } from '../utils/global.store'
 
 const notifySuccess = (message: string) => toast.success(`${message}`)
 const notifyError = (message: string) => toast.error(`${message}`)
 
 export default function Login() {
+  const { setUser } = useGlobal()
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -37,19 +39,12 @@ export default function Login() {
         data: formData,
       })
 
-      console.log(response.data)
+      notifySuccess(`Welcome back, ${response.data.user.first_name}`)
+      setUser(response.data.user)
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('user', JSON.stringify(response.data.user))
+      navigate('/profile')
 
-      if (response?.data?.user?.['_id']) {
-        notifySuccess(`Welcome back, ${response.data.user.first_name}`)
-
-        setTimeout(() => {
-          localStorage.setItem('user', JSON.stringify(response.data.user))
-          localStorage.setItem('token', response.data.token)
-
-          navigate('/profile')
-          setIsLoading(false)
-        }, 2000)
-      }
     } catch (error) {
       notifyError('Invalid email or password')
       setIsLoading(false)
@@ -60,7 +55,6 @@ export default function Login() {
 
   return (
     <>
-      <ToastContainer />
       <div className="flex min-h-screen items-center justify-center">
         <div className="rounded-lg bg-gray-800 p-6 shadow-lg">
           <form onSubmit={handleSubmit} className="space-y-4">

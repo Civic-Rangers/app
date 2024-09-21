@@ -17,6 +17,8 @@ export function DonorSignup() {
     photo_id: '',
   });
 
+  const [toast, setToast] = useState({ show: false, message: '', type: '' });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -27,27 +29,54 @@ export function DonorSignup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://api-0zuj.onrender.com';
+    const apiUrl = import.meta.env.VITE_API_BASE_URL
+
+    console.log('Form data:', formData);
+    console.log('API URL:', apiUrl);
+
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch(`${apiUrl}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
+
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
       const data = await response.json();
+      console.log('Response data:', data);
+
       if (response.ok) {
         console.log('User created successfully:', data);
+        setToast({ show: true, message: 'User created successfully!', type: 'success' });
       } else {
         console.error('Error creating user:', data);
+        setToast({ show: true, message: `Error: ${data.message}`, type: 'error' });
       }
     } catch (error) {
       console.error('Error:', error);
+      //@ts-ignore
+    //   setToast({ show: true, message: `Error: ${error.message}`, type: 'error' });
+    } finally {
+      setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000); // Hide toast after 3 seconds
     }
   };
 
   return (
-    <div className="container mx-auto p-4 pb-20"> {/* Add padding-bottom to avoid overlap */}
+    <div className="container mx-auto p-4 pb-20">
+      {toast.show && (
+        <div className={`toast toast-top toast-end ${toast.type === 'success' ? 'alert-success' : 'alert-error'}`}>
+          <div className="alert">
+            <div>
+              <span>{toast.message}</span>
+            </div>
+          </div>
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="form-control">
           <label className="label">

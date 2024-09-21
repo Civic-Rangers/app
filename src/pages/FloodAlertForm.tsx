@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import FloodZoneComponent from '../pages/FloodZone.tsx';
-import { Address } from 'cluster';
+interface Address {
+  address_street: string;
+  address_city: string;
+  address_state: string;
+  address_zip: string;
+}
+
 
 export function FloodAlertForm() {
   const [formData, setFormData] = useState({
     address_street: '',
     address_state: '',
     address_zip: '',
-    address_city: ''  
+    address_city: ''
   });
 
   const [toast, setToast] = useState({ show: false, message: '', type: '' });
@@ -32,7 +38,7 @@ export function FloodAlertForm() {
       const address = {
         address: `${formData.address_street}, ${formData.address_city}, ${formData.address_state}, ${formData.address_zip}`
       };
-      
+
       const response = await fetch(`${apiUrl}/api/FloodZone`, {
         method: 'POST',
         headers: {
@@ -142,7 +148,7 @@ export function FloodAlertForm() {
         <table className="table table-zebra mt-5">
           <thead>
             <tr className='flex justify-center ...'>
-              <th>Flood Zones</th>      
+              <th>Flood Zones</th>
             </tr>
             <tr>
               <th>Street</th>

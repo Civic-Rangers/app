@@ -98,7 +98,7 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                         distance={space.distance}
                                         available={space.available}
                                         imageSrc={space.imageSrc}
-                                        onClick={() => document.getElementById('my_modal_1').showModal()} // Example onClick functionality
+                                        // onClick={() => document.getElementById('my_modal_1').showModal()} // Example onClick functionality
                                     />
                                 ))
                             ) : (
@@ -133,7 +133,8 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                                             <td className="p-2">{request.phone}</td>
                                             <td className="p-2">{request.vehicle}</td>
                                             <td className="p-2">
-                                                <button className="btn btn-sm" onClick={() => document.getElementById('my_modal_1').showModal()}>Review</button>
+                                            <button className="btn btn-sm">Review</button>
+                                                {/* <button className="btn btn-sm" onClick={() => document.getElementById('my_modal_1').showModal()}>Review</button> */}
                                             </td>
                                         </tr>
                                     ))}

@@ -38,7 +38,7 @@ export function DonorSignup() {
     try {
       const response = await HTTP({
         method: 'POST',
-        url: `api/auth/signup`,
+        url: `/auth/signup`,
         data: formData,
       })
 

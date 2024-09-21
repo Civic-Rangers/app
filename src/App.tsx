@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
+import { ToastContainer } from 'react-toastify';
 import { AppContainer } from './components/AppContainer'
 import { Layout } from './components/Layout'
 import { Dashboard } from './pages/Dashboard'
@@ -31,9 +31,11 @@ function App() {
             {/* share routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            
           </Route>
         </Route>
       </Routes>
+      <ToastContainer position="bottom-center" />
     </BrowserRouter>
   )
 }

@@ -1,12 +1,6 @@
-import React, { useState } from 'react'
-
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
-import HTTP from '../utils/http'
-
-const notifySuccess = (message: string) => toast.success(message)
-const notifyError = (message: string) => toast.error(message)
+import React, { useState } from 'react';
+import HTTP from '../utils/http';
+import Toast from '../components/Toast';
 
 export function DonorSignup() {
   const [formData, setFormData] = useState({
@@ -23,39 +17,42 @@ export function DonorSignup() {
     role: 'donor',
     biography: '',
     photo_id: '',
-  })
+  });
+
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await HTTP({
         method: 'POST',
         url: `/auth/signup`,
         data: formData,
-      })
+      });
 
-      const data = response.data
+      const data = response.data;
 
       if (response.status === 201) {
-        notifySuccess('User created successfully!')
+        setToast({ message: 'User created successfully!', type: 'success' });
       } else {
-        notifyError(`Error: ${data.message}`)
+        setToast({ message: `Error: ${data.message}`, type: 'error' });
       }
     } catch (error) {
-      notifyError(`Error: ${error.message}`)
+      setToast({ message: `Error: ${error.message}`, type: 'error' });
     }
-  }
+  };
 
   return (
     <div className="container mx-auto p-4 pb-20">
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="form-control">
           <label className="label">
@@ -165,7 +162,13 @@ export function DonorSignup() {
           <label className="label">
             <span className="label-text">Date of Birth</span>
           </label>
-          <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="input input-bordered" />
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+            className="input input-bordered"
+          />
         </div>
 
         <div className="form-control">
@@ -185,7 +188,13 @@ export function DonorSignup() {
           <label className="label">
             <span className="label-text">Role</span>
           </label>
-          <input type="text" name="role" value={formData.role} readOnly className="input input-bordered" />
+          <input
+            type="text"
+            name="role"
+            value={formData.role}
+            readOnly
+            className="input input-bordered"
+          />
         </div>
 
         <div className="form-control">
@@ -220,7 +229,7 @@ export function DonorSignup() {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default DonorSignup
+export default DonorSignup;

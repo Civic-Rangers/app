@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import HTTP from '../utils/http';
-
-const notifySuccess = (message: string) => toast.success(message);
-const notifyError = (message: string) => toast.error(message);
+import Toast from '../components/Toast';
 
 export function SeekerSignup() {
   const [formData, setFormData] = useState({
@@ -22,6 +18,8 @@ export function SeekerSignup() {
     biography: '',
     photo_id: '',
   });
+
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -43,17 +41,18 @@ export function SeekerSignup() {
       const data = response.data;
 
       if (response.status === 201) {
-        notifySuccess('User created successfully!');
+        setToast({ message: 'User created successfully!', type: 'success' });
       } else {
-        notifyError(`Error: ${data.message}`);
+        setToast({ message: `Error: ${data.message}`, type: 'error' });
       }
     } catch (error) {
-      notifyError(`Error: ${error.message}`);
+      setToast({ message: `Error: ${error.message}`, type: 'error' });
     }
   };
 
   return (
     <div className="container mx-auto p-4 pb-20">
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="form-control">
           <label className="label">

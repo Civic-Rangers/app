@@ -5,11 +5,11 @@ export const Hero = () => {
   const navigate = useNavigate();
 
   const handleNeedSpotClick = () => {
-    navigate('/seeker-signup');
+    navigate('/seeker/signup');
   };
 
   const handleHaveSpotClick = () => {
-    navigate('/donor-signup');
+    navigate('/donor/signup');
   };
 
   return (

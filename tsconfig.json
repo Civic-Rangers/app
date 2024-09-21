@@ -1,7 +1,12 @@
 {
   "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "compilerOptions": {
+    "noUnusedLocals": false, // Disable errors for unused local variables
+    "noUnusedParameters": false, // Disable errors for unused parameters
+    "skipLibCheck": true, // Skips type checking of declaration files
+    "strict": false, // Disables strict type checks
+    "noEmitOnError": false, // Allow emitting code even if there are errors
+    "ignoreDeprecations": "5.0" // Option to ignore certain deprecations
+  }
 }

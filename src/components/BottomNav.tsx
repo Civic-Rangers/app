@@ -11,6 +11,7 @@ export const BottomNav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { user } = useGlobal()
 
+  console.log(isLoggedIn)
   useEffect(() => {
     if (getUser()) {
       setIsLoggedIn(true)

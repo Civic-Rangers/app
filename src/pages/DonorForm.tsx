@@ -25,9 +25,25 @@ export function DonorSignup() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log('User created successfully:', data);
+      } else {
+        console.error('Error creating user:', data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

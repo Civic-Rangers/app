@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 export function SeekerSignup() {
   const [formData, setFormData] = useState({
@@ -18,17 +18,33 @@ export function SeekerSignup() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log(formData)
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log('User created successfully:', data);
+      } else {
+        console.error('Error creating user:', data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -140,7 +156,13 @@ export function SeekerSignup() {
         <label className="label">
           <span className="label-text">Date of Birth</span>
         </label>
-        <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="input input-bordered" />
+        <input
+          type="date"
+          name="dob"
+          value={formData.dob}
+          onChange={handleChange}
+          className="input input-bordered"
+        />
       </div>
 
       <div className="form-control">
@@ -160,7 +182,13 @@ export function SeekerSignup() {
         <label className="label">
           <span className="label-text">Role</span>
         </label>
-        <input type="text" name="role" value={formData.role} readOnly className="input input-bordered" />
+        <input
+          type="text"
+          name="role"
+          value={formData.role}
+          readOnly
+          className="input input-bordered"
+        />
       </div>
 
       <div className="form-control">
@@ -194,7 +222,7 @@ export function SeekerSignup() {
         </button>
       </div>
     </form>
-  )
+  );
 }
 
 export default SeekerSignup;

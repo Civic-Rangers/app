@@ -19,23 +19,17 @@ type ProfileProps = {
     isLoggedInUser: boolean; // New prop to check if the profile belongs to the logged-in user
 }
 
-type Request = {
-    name: string;
-    phone: string;
-    vehicle: string;
-    profileImg: string;
-    location: string;
-}
-
 export function Profile({ role, name, description, phone, email, availableSpaces, isLoggedInUser }: ProfileProps) {
 
     return (
-        <div className="p-4 pb-20">
-            {role === "donor" ? (
+        <div className="p-0 pb-20">
+            <header className="mb-6 flex items-center justify-between bg-gray-800 p-4 rounded-lg shadow-lg">
+                <h1 className="text-1xl font-bold text-white">Spots</h1>
+            </header>
                 <>
                     <div className="relative mb-16">
                         {/* Profile background and dropdown */}
-                        <div className="bg-cover bg-gray-100 h-48 rounded-lg">
+                        <div className="bg-cover bg-gray-800 h-32 rounded-lg">
                             <div className="absolute top-2 right-2">
                                 <div className="dropdown dropdown-end">
                                     <label tabIndex={0} className="btn btn-sm btn-ghost">
@@ -136,9 +130,6 @@ export function Profile({ role, name, description, phone, email, availableSpaces
                         </div>
                     )} */}
                 </>
-            ) : (
-                <div>This is a seeker!</div>
-            )}
         </div>
     );
 }

@@ -27,7 +27,7 @@ export const Navbar = () => {
       </div>
 
       {isLoggedIn ? (
-        <Avatar />
+        <Avatar setIsLoggedIn={setIsLoggedIn} />
       ) : (
         <a className="btn btn-accent btn-sm mr-3" onClick={() => navigate('/login')}>
           Log In

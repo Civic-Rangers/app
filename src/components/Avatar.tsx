@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 
-export const Avatar = () => {
+export const Avatar = ({ setIsLoggedIn }: { setIsLoggedIn: (value: boolean) => void }) => {
   const navigate = useNavigate()
 
   const logout = () => {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
+    setIsLoggedIn(false)
 
     navigate('/login')
   }

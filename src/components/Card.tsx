@@ -31,7 +31,7 @@ export function Card({ address_street, address_city, address_state, address_zip,
                                 </>
                             ) : (
                                 <>
-                                    <FaTimesCircle className="text-red-500" />
+                                    <FaTimesCircle className="text-error" />
                                     <p className="text-sm">Not Available</p>
                                 </>
                             )}

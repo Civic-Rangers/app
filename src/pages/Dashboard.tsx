@@ -1,3 +1,5 @@
+import { AppContainer } from "../components/AppContainer";
+
 export function Dashboard(){
     return (
         <>
@@ -25,5 +27,8 @@ export function Dashboard(){
                 <h2>Requests</h2>
             </div>
         </>
+        // <AppContainer>
+        //     <p>Hello, World</p>
+        // </AppContainer>
     )
 }

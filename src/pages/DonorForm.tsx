@@ -35,12 +35,10 @@ export function DonorSignup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://api-0zuj.onrender.com'
-
     try {
       const response = await HTTP({
         method: 'POST',
-        url: `${apiUrl}/api/auth/signup`,
+        url: `api/auth/signup`,
         data: formData,
       })
 

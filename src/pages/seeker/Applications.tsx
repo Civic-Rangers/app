@@ -29,7 +29,7 @@ const Applications: React.FC = () => {
             </thead>
             <tbody className='text-white bg-gray-800'>
               {applications.map(application => (
-                <tr key={application.id}>
+                <tr key={application.id} className='border-b'>
                   <td className='p-2 md:flex items-center gap-4'>
                     <img src={application.image} alt={application.image} className='w-10 h-10 rounded hidden md:block'/>
                     <div>

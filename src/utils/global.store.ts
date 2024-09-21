@@ -8,7 +8,7 @@ interface State {
   resetStore: () => void
 }
 
-export const useGlobal = create<State>((set, get) => ({
+export const useGlobal = create<State>((set) => ({
   user: {
     _id: '',
     first_name: '',

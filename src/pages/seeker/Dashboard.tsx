@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { GoogleMap, LoadScript, Marker, MarkerClusterer } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 
 const mapContainerStyle = { height: '400px', width: '100%' }
 const center = { lat: 26.252142412858532, lng: -80.22885988759279 }
@@ -11,7 +11,7 @@ const center = { lat: 26.252142412858532, lng: -80.22885988759279 }
 export default function Dashboard() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
-  const [markers, setMarkers] = useState([])
+  const [markers, setMarkers] = useState<{ lat: number; lng: number }[]>([])
   const [selectedMarker, setSelectedMarker] = useState<{
     lat: number
     lng: number
@@ -29,7 +29,7 @@ export default function Dashboard() {
     ]
 
     setTimeout(() => {
-      setMarkers(data)
+      return setMarkers(data)
     }, 1000)
   }, [])
 

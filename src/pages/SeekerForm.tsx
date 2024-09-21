@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import HTTP from '../utils/http';
-import Toast from '../components/Toast';
+import React, { useState } from 'react'
+
+import Toast from '../components/Toast'
+import HTTP from '../utils/http'
 
 export function SeekerSignup() {
   const [formData, setFormData] = useState({
@@ -17,38 +18,38 @@ export function SeekerSignup() {
     role: 'seekers',
     biography: '',
     photo_id: '',
-  });
+  })
 
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData({
       ...formData,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await HTTP({
         method: 'POST',
         url: `/auth/signup`,
         data: formData,
-      });
+      })
 
-      const data = response.data;
+      const data = response.data
 
       if (response.status === 201) {
-        setToast({ message: 'User created successfully!', type: 'success' });
+        setToast({ message: 'User created successfully!', type: 'success' })
       } else {
-        setToast({ message: `Error: ${data.message}`, type: 'error' });
+        setToast({ message: `Error: ${data.message}`, type: 'error' })
       }
     } catch (error) {
-      setToast({ message: `Error: ${error.message}`, type: 'error' });
+      setToast({ message: `Error `, type: 'error' })
     }
-  };
+  }
 
   return (
     <div className="container mx-auto p-4 pb-20">
@@ -162,13 +163,7 @@ export function SeekerSignup() {
           <label className="label">
             <span className="label-text">Date of Birth</span>
           </label>
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            className="input input-bordered"
-          />
+          <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="input input-bordered" />
         </div>
 
         <div className="form-control">
@@ -188,13 +183,7 @@ export function SeekerSignup() {
           <label className="label">
             <span className="label-text">Role</span>
           </label>
-          <input
-            type="text"
-            name="role"
-            value={formData.role}
-            readOnly
-            className="input input-bordered"
-          />
+          <input type="text" name="role" value={formData.role} readOnly className="input input-bordered" />
         </div>
 
         <div className="form-control">
@@ -229,7 +218,7 @@ export function SeekerSignup() {
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default SeekerSignup;
+export default SeekerSignup

@@ -1,4 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import HTTP from '../utils/http'
+
+const notifySuccess = (message: string) => toast.success(message)
+const notifyError = (message: string) => toast.error(message)
 
 export function DonorSignup() {
   const [formData, setFormData] = useState({
@@ -15,68 +23,41 @@ export function DonorSignup() {
     role: 'donor',
     biography: '',
     photo_id: '',
-  });
-
-  const [toast, setToast] = useState({ show: false, message: '', type: '' });
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData({
       ...formData,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://api-0zuj.onrender.com';
-    const apiUrl = import.meta.env.VITE_API_BASE_URL
-
-    console.log('Form data:', formData);
-    console.log('API URL:', apiUrl);
+    e.preventDefault()
+    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://api-0zuj.onrender.com'
 
     try {
-      const response = await fetch(`${apiUrl}/api/auth/signup`, {
+      const response = await HTTP({
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+        url: `${apiUrl}/api/auth/signup`,
+        data: formData,
+      })
 
-      console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
+      const data = response.data
 
-      const data = await response.json();
-      console.log('Response data:', data);
-
-      if (response.ok) {
-        console.log('User created successfully:', data);
-        setToast({ show: true, message: 'User created successfully!', type: 'success' });
+      if (response.status === 201) {
+        notifySuccess('User created successfully!')
       } else {
-        console.error('Error creating user:', data);
-        setToast({ show: true, message: `Error: ${data.message}`, type: 'error' });
+        notifyError(`Error: ${data.message}`)
       }
     } catch (error) {
-      console.error('Error:', error);
-      //@ts-ignore
-    //   setToast({ show: true, message: `Error: ${error.message}`, type: 'error' });
-    } finally {
-      setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000); // Hide toast after 3 seconds
+      notifyError(`Error: ${error.message}`)
     }
-  };
+  }
 
   return (
     <div className="container mx-auto p-4 pb-20">
-      {toast.show && (
-        <div className={`toast toast-top toast-end ${toast.type === 'success' ? 'alert-success' : 'alert-error'}`}>
-          <div className="alert">
-            <div>
-              <span>{toast.message}</span>
-            </div>
-          </div>
-        </div>
-      )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="form-control">
           <label className="label">
@@ -186,13 +167,7 @@ export function DonorSignup() {
           <label className="label">
             <span className="label-text">Date of Birth</span>
           </label>
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            className="input input-bordered"
-          />
+          <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="input input-bordered" />
         </div>
 
         <div className="form-control">
@@ -212,13 +187,7 @@ export function DonorSignup() {
           <label className="label">
             <span className="label-text">Role</span>
           </label>
-          <input
-            type="text"
-            name="role"
-            value={formData.role}
-            readOnly
-            className="input input-bordered"
-          />
+          <input type="text" name="role" value={formData.role} readOnly className="input input-bordered" />
         </div>
 
         <div className="form-control">
@@ -253,7 +222,7 @@ export function DonorSignup() {
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default DonorSignup;
+export default DonorSignup

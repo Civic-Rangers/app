@@ -12,7 +12,7 @@ export const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { user } = useGlobal()
   const navigate = useNavigate()
-
+  console.log(isLoggedIn)
   useEffect(() => {
     if (getUser()) {
       setIsLoggedIn(true)
